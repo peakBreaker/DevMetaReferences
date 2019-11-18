@@ -9,6 +9,8 @@ Terraform configuration is divided into :
 - Resources
 - Variables
 - Outputs
+- Data
+- Modules
 
 #### Provider on GCP
 
@@ -159,3 +161,22 @@ resource "google_pubsub_subscription" "example" {
 
 #### KMS Keys
 
+
+### Modules
+
+Writing a TF module is quite straight forward
+
+1. Add a directory with .tf files - these contain resource.
+2. You can also add variables to the "module", which may be overwritten by the
+   parent
+3. Where you want to import this module you add a module block:
+```
+module "mymodule" {
+    source      = "path/to/module"
+    myvariable  = "overridden_value"
+}
+```
+4. Thats pretty much it
+
+
+### Data
